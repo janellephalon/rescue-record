@@ -53,5 +53,5 @@ export const deleteBook = (bookId, token) => {
 // make a search to google books api
 // https://www.googleapis.com/books/v1/volumes?q=harry+potter
 export const searchGoogleBooks = (query) => {
-  return fetch(`https://www.googleapis.com/books/v1/volumes?q=${query}`);
+  return fetch(`curl -d "grant_type=client_credentials&client_id=mF9caukrfnIetPc2CtiAh2dFIXVoY615NuJU5jKNtwfUT2t1CZ&client_secret=wAzj5j3PWJpybpCtfqobIVMQA3335A6egAucYxcJ" https://api.petfinder.com/v2/oauth2/token`);
 };
