@@ -39,22 +39,22 @@ const resolvers = {
       return { token, user };
   },
   
-  saveBook: async (_parent, { bookData }, context) => {
+  savePet: async (_parent, { petData }, context) => {
       if (context.user) {
           const updatedUser = await User.findByIdAndUpdate(
               { _id: context.user._id },
-              { $push: { savedBooks: bookData } },
+              { $push: { savedPets: petData } },
               { new: true }
           );
           return updatedUser;
       }
       throw new AuthenticationError('You need to be logged in!');
   },
-  removeBook: async (_parent, { bookId }, context) => {
+  removePet: async (_parent, { petId }, context) => {
       if (context.user) {
           const updatedUser = await User.findOneAndUpdate(
               { _id: context.user._id },
-              { $pull: { savedBooks: { bookId } } },
+              { $pull: { savedPets: { petId } } },
               { new: true }
           );
           return updatedUser;

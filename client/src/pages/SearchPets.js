@@ -9,24 +9,23 @@ import {
   CardColumns,
 } from "react-bootstrap";
 import { useMutation } from "@apollo/client";
-import { SAVE_BOOK } from "../utils/mutations";
+import { SAVE_PET } from "../utils/mutations";
 import Auth from "../utils/auth";
-import { saveBookIds, getSavedBookIds } from "../utils/localStorage";
 
-const SearchBooks = () => {
+const SearchPets = () => {
   // create state for holding returned google api data
-  const [searchedBooks, setSearchedBooks] = useState([]);
+  const [searchedPets, setSearchedPets] = useState([]);
   // create state for holding our search field data
   const [searchInput, setSearchInput] = useState("");
 
   // create state to hold saved bookId values
-  const [savedBookIds, setSavedBookIds] = useState(getSavedBookIds());
-  const [saveBook, { error }] = useMutation(SAVE_BOOK);
+  const [savedPetsIds, setSavedPetsIds] = useState([]);
+  const [savePet, { error }] = useMutation(SAVE_PET);
 
   // set up useEffect hook to save `savedBookIds` list to localStorage on component unmount
   // learn more here: https://reactjs.org/docs/hooks-effect.html#effects-with-cleanup
   useEffect(() => {
-    return () => saveBookIds(savedBookIds);
+    return () => savedPetsIds (savedPetsIds);
   });
 
   // create method to search for books and set state on form submit
@@ -39,7 +38,7 @@ const SearchBooks = () => {
 
     try {
       const response = await fetch(
-        `https://www.googleapis.com/books/v1/volumes?q=${searchInput}`
+        `curl -d "grant_type=client_credentials&client_id=mF9caukrfnIetPc2CtiAh2dFIXVoY615NuJU5jKNtwfUT2t1CZ&client_secret=wAzj5j3PWJpybpCtfqobIVMQA3335A6egAucYxcJ" https://api.petfinder.com/v2/oauth2/token${searchInput}`
       );
 
       if (!response.ok) {
@@ -48,15 +47,15 @@ const SearchBooks = () => {
 
       const { items } = await response.json();
 
-      const bookData = items.map((book) => ({
-        bookId: book.id,
-        authors: book.volumeInfo.authors || ["No author to display"],
-        title: book.volumeInfo.title,
-        description: book.volumeInfo.description,
-        image: book.volumeInfo.imageLinks?.thumbnail || "",
+      const petData = items.map((pet) => ({
+        petId: pet.id,
+        type: pet.petInfo.type || ["No pet to display"],
+        breed: pet.petInfo.breed,
+        petStatus: pet.petInfo.status,
+        image: pet.petInfo.imageLinks?.thumbnail || "",
       }));
 
-      setSearchedBooks(bookData);
+      setSearchedPets(petData);
       setSearchInput("");
     } catch (err) {
       console.error(err);
@@ -64,9 +63,9 @@ const SearchBooks = () => {
   };
 
   // create function to handle saving a book to our database
-  const handleSaveBook = async (bookId) => {
+  const handleSavePet = async (petId) => {
     // find the book in `searchedBooks` state by the matching id
-    const bookToSave = searchedBooks.find((book) => book.bookId === bookId);
+    const petToSave = searchedPets.find((pet) => pet.petId === petId);
 
     // get token
     const token = Auth.loggedIn() ? Auth.getToken() : null;
@@ -76,11 +75,11 @@ const SearchBooks = () => {
     }
 
     try {
-      await saveBook({
-        variables: { bookData: { ...bookToSave } },
+      await savePet({
+        variables: { petData: { ...petToSave } },
       });
-      console.log(savedBookIds);
-      setSavedBookIds([...savedBookIds, bookToSave.bookId]);
+      console.log(savedPetsIds);
+      setSavedPetsIds([...savedPetsIds, petToSave.petId]);
     } catch (e) {
       console.error(e);
     }
@@ -90,7 +89,7 @@ const SearchBooks = () => {
     <>
       <Jumbotron fluid className="text-light bg-dark">
         <Container>
-          <h1>Search for Books!</h1>
+          <h1>Search for Pets!</h1>
           <Form onSubmit={handleFormSubmit}>
             <Form.Row>
               <Col xs={12} md={8}>
@@ -115,36 +114,36 @@ const SearchBooks = () => {
 
       <Container>
         <h2>
-          {searchedBooks.length
-            ? `Viewing ${searchedBooks.length} results:`
-            : "Search for a book to begin"}
+          {searchedPets.length
+            ? `Viewing ${searchedPets.length} results:`
+            : "Search for a pet to begin"}
         </h2>
         <CardColumns>
-          {searchedBooks.map((book) => {
+          {searchedPets.map((pet) => {
             return (
-              <Card key={book.bookId} border="dark">
-                {book.image ? (
+              <Card key={pet.petId} border="dark">
+                {pet.image ? (
                   <Card.Img
-                    src={book.image}
-                    alt={`The cover for ${book.title}`}
+                    src={pet.image}
+                    alt={`Your next ${pet.type}`}
                     variant="top"
                   />
                 ) : null}
                 <Card.Body>
-                  <Card.Title>{book.title}</Card.Title>
-                  <p className="small">Authors: {book.authors}</p>
-                  <Card.Text>{book.description}</Card.Text>
+                  <Card.Title>{pet.type}</Card.Title>
+                  <p className="small">Breed: {pet.breed}</p>
+                  <Card.Text>{pet.status}</Card.Text>
                   {Auth.loggedIn() && (
                     <Button
-                      disabled={savedBookIds?.some(
-                        (savedId) => savedId === book.bookId
+                      disabled={savedPetsIds?.some(
+                        (savedId) => savedId === pet.petId
                       )}
                       className="btn-block btn-info"
-                      onClick={() => handleSaveBook(book.bookId)}
+                      onClick={() => handleSavePet(pet.petId)}
                     >
-                      {savedBookIds?.some((savedId) => savedId === book.bookId)
-                        ? "Book Already Saved!"
-                        : "Save This Book!"}
+                      {savedPetsIds?.some((savedId) => savedId === pet.petId)
+                        ? "Pet Already Saved!"
+                        : "Save This Pet!"}
                     </Button>
                   )}
                   {error && (
@@ -160,4 +159,4 @@ const SearchBooks = () => {
   );
 };
 
-export default SearchBooks;
+export default SearchPets;
