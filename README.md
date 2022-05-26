@@ -62,12 +62,12 @@ THEN I am logged out of the site and presented with a menu with the options Sear
 ` npm start `
 
 ## Demo
-[]()
+
 
 ## Deployed Link 
 [Deployed Link through Heroku]() 
 
 ## Contributors
 [Janelle Phalon](https://github.com/janellephalon) <br>
-[Menderes Koc]() <br>
-[Fransisco Alegria]() 
+[Menderes Koc](https://github.com/MenderesKoc) <br>
+[Francisco Alegria](https://github.com/mralegria31) 
