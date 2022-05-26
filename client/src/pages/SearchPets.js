@@ -92,9 +92,9 @@ const SearchPets = () => {
         <Container className="">
         <FontAwesomeIcon icon="fa-solid fa-paw" />
           <h1 className="searchTitle">
-            Where Pets Find Their People</h1>
-            <p>
-            
+            Helping Pets Find Their People</h1>
+            <p className="paragraphText">
+             Seach through thousands of shelter animals in need of furever homes. 
             </p>
           <Form onSubmit={handleFormSubmit}>
             <Form.Row>
@@ -119,15 +119,12 @@ const SearchPets = () => {
         </Container>
       </Jumbotron>
 
-      <Container>
-        <div className="split right"></div>
-      </Container>
-
-      <Container className="petBody">
+      
+      <Container className="split right">
         <h2>
           {searchedPets.length
             ? `Viewing ${searchedPets.length} results:`
-            : "Find your next friend"}
+            : ""}
         </h2>
         <CardColumns>
           {searchedPets.map((pet) => {
@@ -168,11 +165,13 @@ const SearchPets = () => {
       </Container>
 
       <Container>
+        <Col>
         <footer>
-        <h3>React Portfolio</h3>
-    <br></br>
-    <h4>Janelle Phalon</h4>
+          <h3>Rescue Pets, Rescuing People</h3>
+          <br></br>
+          <h4>Janelle Phalon</h4>
         </footer>
+        </Col>
       </Container>
     </>
   );

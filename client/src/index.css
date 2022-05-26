@@ -24,6 +24,12 @@ h6 {
   font-family: 'THE HISTORICAL MARLIANA', sans-serif;
 }
 
+.paragraphText{
+  font-family: 'Wes', sans-serif;
+  color: #1D1E18;
+  font-size: larger;
+}
+
 .navLinks {
   font-family: 'Wes', sans-serif;
 }
@@ -56,8 +62,8 @@ h6 {
   height: 100%;
   width: 50%;
   position:absolute;
-  /* z-index: 1;  */
-  /* overflow-x: hidden; */
+  z-index: 1;  
+  overflow-x: hidden;
   padding-top: 20px;
   padding: 30px;
 }
@@ -76,5 +82,9 @@ h6 {
     background-repeat: no-repeat;
     background-size: cover;
     
+  }
+
+  footer {
+    background-color: #92B9BD;
   }
 
