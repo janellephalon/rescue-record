@@ -11,6 +11,7 @@ import {
 import { useMutation } from "@apollo/client";
 import { SAVE_PET } from "../utils/mutations";
 import Auth from "../utils/auth";
+import { getSavedPetsIds, savePetIds } from "../utils/localStorage";
 
 const SearchPets = () => {
   // create state for holding returned google api data
@@ -19,13 +20,13 @@ const SearchPets = () => {
   const [searchInput, setSearchInput] = useState("");
 
   // create state to hold saved bookId values
-  const [savedPetsIds, setSavedPetsIds] = useState([]);
+  const [savedPetsIds, setSavedPetsIds] = useState(getSavedPetsIds());
   const [savePet, { error }] = useMutation(SAVE_PET);
 
   // set up useEffect hook to save `savedBookIds` list to localStorage on component unmount
   // learn more here: https://reactjs.org/docs/hooks-effect.html#effects-with-cleanup
   useEffect(() => {
-    return () => savedPetsIds (savedPetsIds);
+    return () => savePetIds (savedPetsIds);
   });
 
   // create method to search for books and set state on form submit
@@ -38,7 +39,7 @@ const SearchPets = () => {
 
     try {
       const response = await fetch(
-        `curl -d "grant_type=client_credentials&client_id=mF9caukrfnIetPc2CtiAh2dFIXVoY615NuJU5jKNtwfUT2t1CZ&client_secret=wAzj5j3PWJpybpCtfqobIVMQA3335A6egAucYxcJ" https://api.petfinder.com/v2/oauth2/token${searchInput}`
+        `https://api.petfinder.com/v2/types/{type}`
       );
 
       if (!response.ok) {
@@ -99,7 +100,7 @@ const SearchPets = () => {
                   onChange={(e) => setSearchInput(e.target.value)}
                   type="text"
                   size="lg"
-                  placeholder="Search for a book"
+                  placeholder="Search for a pet"
                 />
               </Col>
               <Col xs={12} md={4}>
