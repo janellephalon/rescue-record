@@ -12,6 +12,7 @@ import { useMutation } from "@apollo/client";
 import { SAVE_PET } from "../utils/mutations";
 import Auth from "../utils/auth";
 import { getSavedPetsIds, savePetIds } from "../utils/localStorage";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const SearchPets = () => {
   // create state for holding returned google api data
@@ -24,7 +25,6 @@ const SearchPets = () => {
   const [savePet, { error }] = useMutation(SAVE_PET);
 
   // set up useEffect hook to save `savedBookIds` list to localStorage on component unmount
-  // learn more here: https://reactjs.org/docs/hooks-effect.html#effects-with-cleanup
   useEffect(() => {
     return () => savePetIds (savedPetsIds);
   });
@@ -39,7 +39,7 @@ const SearchPets = () => {
 
     try {
       const response = await fetch(
-        `https://api.petfinder.com/v2/types/{type}`
+        `https://api.petfinder.com/v2`
       );
 
       if (!response.ok) {
@@ -88,9 +88,14 @@ const SearchPets = () => {
 
   return (
     <>
-      <Jumbotron fluid className="text-light bg-dark">
-        <Container>
-          <h1>Search for Pets!</h1>
+      <Jumbotron fluid className="text-light searchBackground split left">
+        <Container className="">
+        <FontAwesomeIcon icon="fa-solid fa-paw" />
+          <h1 className="searchTitle">
+            Where Pets Find Their People</h1>
+            <p>
+            
+            </p>
           <Form onSubmit={handleFormSubmit}>
             <Form.Row>
               <Col xs={12} md={8}>
@@ -100,12 +105,13 @@ const SearchPets = () => {
                   onChange={(e) => setSearchInput(e.target.value)}
                   type="text"
                   size="lg"
-                  placeholder="Search for a pet"
+                  className="inputText"
+                  placeholder="Search"
                 />
               </Col>
               <Col xs={12} md={4}>
-                <Button type="submit" variant="success" size="lg">
-                  Submit Search
+                <Button type="submit" className="searchButton" size="lg">
+                  Enter
                 </Button>
               </Col>
             </Form.Row>
@@ -114,10 +120,14 @@ const SearchPets = () => {
       </Jumbotron>
 
       <Container>
+        <div className="split right"></div>
+      </Container>
+
+      <Container className="petBody">
         <h2>
           {searchedPets.length
             ? `Viewing ${searchedPets.length} results:`
-            : "Search for a pet to begin"}
+            : "Find your next friend"}
         </h2>
         <CardColumns>
           {searchedPets.map((pet) => {
@@ -155,6 +165,14 @@ const SearchPets = () => {
             );
           })}
         </CardColumns>
+      </Container>
+
+      <Container>
+        <footer>
+        <h3>React Portfolio</h3>
+    <br></br>
+    <h4>Janelle Phalon</h4>
+        </footer>
       </Container>
     </>
   );
