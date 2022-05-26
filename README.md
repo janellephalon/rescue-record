@@ -69,5 +69,5 @@ THEN I am logged out of the site and presented with a menu with the options Sear
 
 ## Contributors
 [Janelle Phalon](https://github.com/janellephalon) <br>
-[Menderes Koc]() <br>
-[Fransisco Alegria]() 
+[Menderes Koc](https://github.com/MenderesKoc) <br>
+[Fransisco Alegria](https://github.com/mralegria31) 
