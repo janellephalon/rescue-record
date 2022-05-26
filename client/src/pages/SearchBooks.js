@@ -36,10 +36,10 @@ const SearchBooks = () => {
     if (!searchInput) {
       return false;
     }
-
+  
     try {
       const response = await fetch(
-        `https://www.googleapis.com/books/v1/volumes?q=${searchInput}`
+        `https://api.petfinder.com/books/v1/volumes?q=${searchInput}`
       );
 
       if (!response.ok) {
