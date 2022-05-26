@@ -59,7 +59,7 @@ h6 {
 
 .inputText {
   font-family: 'Wes', sans-serif;
-  border-color: #1F363D
+  border-color: #1F363D;
 }
 
 /* split */ 
@@ -93,7 +93,15 @@ h6 {
 /* Footer */ 
 
   footer {
-    background-color: #92B9BD;
+    background-color: white;
+    color: #1F363D;
+    padding-top: 10px;
+    padding-left: 20px;
+    position: fixed;
+    left:0px;
+    bottom:0px;
+    height:80px;
+    width:100%;
   }
 
   /* Saved Pets Page */ 

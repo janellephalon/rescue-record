@@ -13,6 +13,7 @@ import { SAVE_PET } from "../utils/mutations";
 import Auth from "../utils/auth";
 import { getSavedPetsIds, savePetIds } from "../utils/localStorage";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+// import { LeftFooter } from "../utils/queries";
 
 const SearchPets = () => {
   // create state for holding returned google api data
@@ -116,6 +117,14 @@ const SearchPets = () => {
               </Col>
             </Form.Row>
           </Form>
+          <div>
+      
+          <footer>
+          <h3>Rescue Pets, Rescuing People</h3>
+          <h5>Group 6</h5>
+        </footer>
+        </div>
+
         </Container>
       </Jumbotron>
 
@@ -162,16 +171,6 @@ const SearchPets = () => {
             );
           })}
         </CardColumns>
-      </Container>
-
-      <Container>
-        <Col>
-        <footer>
-          <h3>Rescue Pets, Rescuing People</h3>
-          <br></br>
-          <h4>Janelle Phalon</h4>
-        </footer>
-        </Col>
       </Container>
     </>
   );
