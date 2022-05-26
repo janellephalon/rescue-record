@@ -88,6 +88,13 @@ const SavedPets = () => {
             );
           })}
         </CardColumns>
+        <div>
+      
+          <footer>
+          <h3>Rescue Pets, Rescuing People</h3>
+          <h5>Group 6</h5>
+        </footer>
+        </div>
       </Container>
     </>
   );

@@ -12,25 +12,19 @@ import { useMutation } from "@apollo/client";
 import { SAVE_PET } from "../utils/mutations";
 import Auth from "../utils/auth";
 import { getSavedPetsIds, savePetIds } from "../utils/localStorage";
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-// import { LeftFooter } from "../utils/queries";
+// import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 const SearchPets = () => {
-  // create state for holding returned google api data
   const [searchedPets, setSearchedPets] = useState([]);
-  // create state for holding our search field data
   const [searchInput, setSearchInput] = useState("");
-
-  // create state to hold saved bookId values
   const [savedPetsIds, setSavedPetsIds] = useState(getSavedPetsIds());
   const [savePet, { error }] = useMutation(SAVE_PET);
 
-  // set up useEffect hook to save `savedBookIds` list to localStorage on component unmount
+
   useEffect(() => {
     return () => savePetIds (savedPetsIds);
   });
 
-  // create method to search for books and set state on form submit
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
@@ -40,7 +34,8 @@ const SearchPets = () => {
 
     try {
       const response = await fetch(
-        `https://api.petfinder.com/v2`
+        `
+        curl -H "grant_type=client_credentials&client_id=mF9caukrfnIetPc2CtiAh2dFIXVoY615NuJU5jKNtwfUT2t1CZ&client_secret=wAzj5j3PWJpybpCtfqobIVMQA3335A6egAucYxcJ" https://api.petfinder.com/v2/animals`
       );
 
       if (!response.ok) {
@@ -91,7 +86,7 @@ const SearchPets = () => {
     <>
       <Jumbotron fluid className="text-light searchBackground split left">
         <Container className="">
-        <FontAwesomeIcon icon="fa-solid fa-paw" />
+        {/* <FontAwesomeIcon icon="fa-solid fa-paw" /> */}
           <h1 className="searchTitle">
             Helping Pets Find Their People</h1>
             <p className="paragraphText">
