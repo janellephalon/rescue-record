@@ -14,6 +14,29 @@ import Auth from "../utils/auth";
 import { getSavedPetsIds, savePetIds } from "../utils/localStorage";
 // import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
+// const AuthContext = createContext();
+// const petFinderKey = "";
+// const petFinderSecret ="";
+// function myApp({ Component, pageProps }) {
+//   useEffect(() => {
+//     const fetchAccessToken = async () => {
+//       const params == new URLSearchParams();
+//       params.append("grand_type", "client_credentials");
+//       params.append("client_id", petFinderKey);
+//       params.append("client_secret", petFinderSecret);
+//       const petFinderRes = await fetch (
+//         "https://api.petfinder.com/v2/oauth/token",
+//         {
+//           method: "POST",
+//           body: params
+//         }
+//       );
+//       console.log(await petFinderRes.json());
+//     };
+//     fetchAccessToken();
+//   });
+// }
+
 const SearchPets = () => {
   const [searchedPets, setSearchedPets] = useState([]);
   const [searchInput, setSearchInput] = useState("");
@@ -34,8 +57,7 @@ const SearchPets = () => {
 
     try {
       const response = await fetch(
-        `
-        curl -H "grant_type=client_credentials&client_id=mF9caukrfnIetPc2CtiAh2dFIXVoY615NuJU5jKNtwfUT2t1CZ&client_secret=wAzj5j3PWJpybpCtfqobIVMQA3335A6egAucYxcJ" https://api.petfinder.com/v2/animals`
+        `https://api.petfinder.com/v2/animals`
       );
 
       if (!response.ok) {
@@ -59,12 +81,9 @@ const SearchPets = () => {
     }
   };
 
-  // create function to handle saving a book to our database
   const handleSavePet = async (petId) => {
-    // find the book in `searchedBooks` state by the matching id
     const petToSave = searchedPets.find((pet) => pet.petId === petId);
 
-    // get token
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
     if (!token) {
