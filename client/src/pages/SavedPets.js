@@ -8,18 +8,18 @@ import {
 } from "react-bootstrap";
 import { useQuery, useMutation } from "@apollo/client";
 import { GET_ME } from "../utils/queries";
-import { REMOVE_BOOK } from "../utils/mutations";
-import { removeBookId } from "../utils/localStorage";
+import { REMOVE_PET } from "../utils/mutations";
+import { removePetId } from "../utils/localStorage";
 import Auth from "../utils/auth";
 
-const SavedBooks = () => {
+const SavedPets = () => {
   const { loading, data } = useQuery(GET_ME);
-  const [removeBook, { error }] = useMutation(REMOVE_BOOK);
+  const [removePet, { error }] = useMutation(REMOVE_PET);
 
   const userData = data?.me || {};
 
   // create function that accepts the book's _id value as param and deletes the book from the database
-  const handleDeleteBook = async (bookId) => {
+  const handleDeletePet = async (petId) => {
     // get token
     const token = Auth.loggedIn() ? Auth.getToken() : null;
 
@@ -28,12 +28,12 @@ const SavedBooks = () => {
     }
 
     try {
-      await removeBook({
-        variables: { bookId },
+      await removePet({
+        variables: { petId },
       });
 
       // upon success, remove book's id from localStorage
-      removeBookId(bookId);
+      removePetId(petId);
     } catch (err) {
       console.error(err);
     }
@@ -46,39 +46,39 @@ const SavedBooks = () => {
 
   return (
     <>
-      <Jumbotron fluid className="text-light bg-dark">
+      <Jumbotron fluid className="savedPetsBody">
         <Container>
-          <h1>Viewing {userData.username}'s books!</h1>
+          <h1>{userData.username}'s saved rescue pets</h1>
         </Container>
       </Jumbotron>
       <Container>
         <h2>
-          {userData.savedBooks?.length
-            ? `Viewing ${userData.savedBooks.length} saved ${
-                userData.savedBooks.length === 1 ? "book" : "books"
+          {userData.savedPets?.length
+            ? `Viewing ${userData.savedPets.length} saved ${
+                userData.savedPets.length === 1 ? "pet" : "pets"
               }:`
-            : "You have no saved books!"}
+            : "You have no saved pets!"}
         </h2>
         <CardColumns>
-          {userData.savedBooks?.map((book) => {
+          {userData.savedPets?.map((pet) => {
             return (
-              <Card key={book.bookId} border="dark">
-                {book.image ? (
+              <Card key={pet.Id} border="dark">
+                {pet.image ? (
                   <Card.Img
-                    src={book.image}
-                    alt={`The cover for ${book.title}`}
+                    src={pet.image}
+                    alt={` ${pet.type}`}
                     variant="top"
                   />
                 ) : null}
                 <Card.Body>
-                  <Card.Title>{book.title}</Card.Title>
-                  <p className="small">Authors: {book.authors}</p>
-                  <Card.Text>{book.description}</Card.Text>
+                  <Card.Title>{pet.type}</Card.Title>
+                  <p className="small">Breed: {pet.breed}</p>
+                  <Card.Text>{pet.status}</Card.Text>
                   <Button
                     className="btn-block btn-danger"
-                    onClick={() => handleDeleteBook(book.bookId)}
+                    onClick={() => handleDeletePet(pet.petId)}
                   >
-                    Delete this Book!
+                    Remove this Friend!
                   </Button>
                   {error && (
                     <span className="ml-2">Something went wrong...</span>
@@ -88,9 +88,16 @@ const SavedBooks = () => {
             );
           })}
         </CardColumns>
+        <div>
+      
+          <footer>
+          <h3>Rescue Pets, Rescuing People</h3>
+          <h5>Group 6</h5>
+        </footer>
+        </div>
       </Container>
     </>
   );
 };
 
-export default SavedBooks;
+export default SavedPets;
