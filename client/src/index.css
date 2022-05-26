@@ -16,9 +16,7 @@ h6 {
   font-style: italic;
 }
 
-.searchBackground {
-  background-color: #6B8F71;
-}
+/* nav */ 
 
 .pageTitle {
   font-family: 'THE HISTORICAL MARLIANA', sans-serif;
@@ -36,6 +34,12 @@ h6 {
 
 .navBg {
   background-color:white;
+}
+
+/* search */ 
+
+.searchBackground {
+  background-color: #6B8F71;
 }
 
 .searchTitle {
@@ -57,6 +61,8 @@ h6 {
   font-family: 'Wes', sans-serif;
   border-color: #1F363D
 }
+
+/* split */ 
 
 .split {
   height: 100%;
@@ -84,7 +90,15 @@ h6 {
     
   }
 
+/* Footer */ 
+
   footer {
+    background-color: #92B9BD;
+  }
+
+  /* Saved Pets Page */ 
+  
+  .savedPetsBody {
     background-color: #92B9BD;
   }
 
