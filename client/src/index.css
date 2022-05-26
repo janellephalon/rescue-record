@@ -8,10 +8,83 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Rubik Mono One', sans-serif;
+  font-family: 'Wes', sans-serif;
 }
 
 .small {
   font-weight: 300;
   font-style: italic;
 }
+
+.searchBackground {
+  background-color: #6B8F71;
+}
+
+.pageTitle {
+  font-family: 'THE HISTORICAL MARLIANA', sans-serif;
+}
+
+.paragraphText{
+  font-family: 'Wes', sans-serif;
+  color: #1D1E18;
+  font-size: larger;
+}
+
+.navLinks {
+  font-family: 'Wes', sans-serif;
+}
+
+.navBg {
+  background-color:white;
+}
+
+.searchTitle {
+  font-family: 'Wes', sans-serif;
+  color: #1D1E18;
+  position: center;
+  text-align: left;
+  
+}
+
+.searchButton {
+  font-family: 'Wes', sans-serif;
+  background-color: #92B9BD;
+  border-color: #1F363D
+
+}
+
+.inputText {
+  font-family: 'Wes', sans-serif;
+  border-color: #1F363D
+}
+
+.split {
+  height: 100%;
+  width: 50%;
+  position:absolute;
+  z-index: 1;  
+  overflow-x: hidden;
+  padding-top: 20px;
+  padding: 30px;
+}
+
+.left {
+  left: 0;
+  background-color: white;
+  padding: 150px 0;
+  text-align: left;
+}
+
+.right {
+    right: 0;
+    background-image: url("./images/splitBg.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+  }
+
+  footer {
+    background-color: #92B9BD;
+  }
+
