@@ -10,7 +10,7 @@ const SignupForm = () => {
     email: "",
     password: "",
   });
-  
+
   const [validated] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [addUser, { error }] = useMutation(ADD_USER);
@@ -47,7 +47,6 @@ const SignupForm = () => {
 
   return (
     <>
-
       <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
         <Alert
           dismissible

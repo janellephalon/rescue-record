@@ -43,9 +43,8 @@ const SearchPets = () => {
   const [savedPetsIds, setSavedPetsIds] = useState(getSavedPetsIds());
   const [savePet, { error }] = useMutation(SAVE_PET);
 
-
   useEffect(() => {
-    return () => savePetIds (savedPetsIds);
+    return () => savePetIds(savedPetsIds);
   });
 
   const handleFormSubmit = async (event) => {
@@ -56,9 +55,7 @@ const SearchPets = () => {
     }
 
     try {
-      const response = await fetch(
-        `https://api.petfinder.com/v2/animals`
-      );
+      const response = await fetch(`https://api.petfinder.com/v2/animals`);
 
       if (!response.ok) {
         throw new Error("something went wrong!");
@@ -105,12 +102,11 @@ const SearchPets = () => {
     <>
       <Jumbotron fluid className="text-light searchBackground split left">
         <Container className="">
-        {/* <FontAwesomeIcon icon="fa-solid fa-paw" /> */}
-          <h1 className="searchTitle">
-            Helping Pets Find Their People</h1>
-            <p className="paragraphText">
-             Seach through thousands of shelter animals in need of furever homes. 
-            </p>
+          {/* <FontAwesomeIcon icon="fa-solid fa-paw" /> */}
+          <h1 className="searchTitle">Helping Pets Find Their People</h1>
+          <p className="paragraphText">
+            Seach through thousands of shelter animals in need of furever homes.
+          </p>
           <Form onSubmit={handleFormSubmit}>
             <Form.Row>
               <Col xs={12} md={8}>
@@ -132,22 +128,17 @@ const SearchPets = () => {
             </Form.Row>
           </Form>
           <div>
-      
-          <footer>
-          <h3>Rescue Pets, Rescuing People</h3>
-          <h5>Group 6</h5>
-        </footer>
-        </div>
-
+            <footer>
+              <h3>Rescue Pets, Rescuing People</h3>
+              <h5>Group 6</h5>
+            </footer>
+          </div>
         </Container>
       </Jumbotron>
 
-      
       <Container className="split right">
         <h2>
-          {searchedPets.length
-            ? `Viewing ${searchedPets.length} results:`
-            : ""}
+          {searchedPets.length ? `Viewing ${searchedPets.length} results:` : ""}
         </h2>
         <CardColumns>
           {searchedPets.map((pet) => {
