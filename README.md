@@ -68,7 +68,7 @@ THEN I am logged out of the site and presented with a menu with the options Sear
 <img width="912" alt="Screen Shot 2022-05-26 at 7 03 17 PM" src="https://user-images.githubusercontent.com/95178236/170593575-f49cc548-7e1a-41ba-8c4e-d49deb451a4e.png">
 
 ## Deployed Link 
-[Deployed Link through Heroku]() 
+[Deployed Link through Heroku](https://afternoon-oasis-36555.herokuapp.com/) 
 
 ## Contributors
 [Janelle Phalon](https://github.com/janellephalon) <br>
