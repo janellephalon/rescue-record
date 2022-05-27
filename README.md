@@ -62,12 +62,16 @@ THEN I am logged out of the site and presented with a menu with the options Sear
 ` npm start `
 
 ## Demo
-[]()
+<img width="908" alt="Screen Shot 2022-05-26 at 7 03 02 PM" src="https://user-images.githubusercontent.com/95178236/170593538-cbe99de7-cbdf-4a2d-8f39-1e0ece847565.png"> <br>
+<img width="909" alt="Screen Shot 2022-05-26 at 7 03 47 PM" src="https://user-images.githubusercontent.com/95178236/170593556-3e44b0bf-f5bb-4a5a-9044-df4519f011f5.png">
+<br>
+<img width="912" alt="Screen Shot 2022-05-26 at 7 03 17 PM" src="https://user-images.githubusercontent.com/95178236/170593575-f49cc548-7e1a-41ba-8c4e-d49deb451a4e.png">
 
 ## Deployed Link 
-[Deployed Link through Heroku]() 
+[Deployed Link through Heroku](https://rescue-records.herokuapp.com/) 
 
 ## Contributors
 [Janelle Phalon](https://github.com/janellephalon) <br>
 [Menderes Koc](https://github.com/MenderesKoc) <br>
-[Fransisco Alegria](https://github.com/mralegria31) 
+[Francisco Alegria](https://github.com/mralegria31) 
+
